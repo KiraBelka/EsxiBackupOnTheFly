@@ -86,24 +86,24 @@ for i in range(len(k)):
 		  		    		print 'pass snapshot file'
 			      	else:
 			        		tempff.append(folderfiles[b])
-	   ####backup action :) ---#########################################
-	   ## local folder backup # uncomment next for permit #######
-	   #os.system('cd lfolder')
-	   #os.system('mkdir -r '+folderid)
-       #os.system('cp '+vmdir+folderid+'/*.* '+ lfolder+folderid)
-       ## network backup over ssh section #######################
-       #os.system('dbclient -i ' + ssh_key + ' ' + dest_host + ' hostname')	
-       exec_with_err_check('dbclient -i '+ ssh_key  + ' ' +  dest_host + ' mkdir -p ' +dest_folder+ '/'+folderid)
-	   for j in range(len(tempff)):
+	####backup action :) ---#########################################
+	## local folder backup # uncomment next for permit #######
+	#os.system('cd lfolder')
+	#os.system('mkdir -r '+folderid)
+	#os.system('cp '+vmdir+folderid+'/*.* '+ lfolder+folderid)
+	## network backup over ssh section #######################
+	#os.system('dbclient -i ' + ssh_key + ' ' + dest_host + ' hostname')	
+	exec_with_err_check('dbclient -i '+ ssh_key  + ' ' +  dest_host + ' mkdir -p ' +dest_folder+ '/'+folderid)
+		for j in range(len(tempff)):
 			exec_with_err_check('scp -i '+ ssh_key + " '"+vmdir+folderid+"'"+'/'+tempff[j] + ' ' + dest_host+':'+dest_folder+"'"+folderid+"'")
-       ## network backup over nfs section #######################
-       ##os.system(nfs_mount_point)                                        
-       ##os.system('mkdir -p '+"'"+nfs_mount_point+folderid+"'")           
-       ##os.system('cp '+"'"+vmdir+folderid+"'"+'/*.* '+"'"+nfs_mount_point+folderid+"'")
-       ## info about current snapshot############################
-       exec_with_err_check(commanda2)
-       ### remove new snapshot after transition #################
-       exec_with_err_check(commanda1)
+	## network backup over nfs section #######################
+	##os.system(nfs_mount_point)                                        
+	##os.system('mkdir -p '+"'"+nfs_mount_point+folderid+"'")           
+	##os.system('cp '+"'"+vmdir+folderid+"'"+'/*.* '+"'"+nfs_mount_point+folderid+"'")
+	## info about current snapshot############################
+	exec_with_err_check(commanda2)
+	### remove new snapshot after transition #################
+	exec_with_err_check(commanda1)
 ######### vm and storage capacity information ###################
 os.system('du -h '+vmdir)
 #os.system('du -h '+nfs_mount_point)
