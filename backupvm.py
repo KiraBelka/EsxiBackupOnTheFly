@@ -108,3 +108,4 @@ for i in range(len(k)):
 os.system('du -h '+vmdir)
 #os.system('du -h '+nfs_mount_point)
 print 'Well done :)'
+##################################################################
